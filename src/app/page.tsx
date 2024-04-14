@@ -18,6 +18,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-4xl font-bold">Shopping List</h1>
+      <a href="http://raspberrypi.local:8000/admin">管理画面</a>
       <div className="flex flex-col items-center justify-center">
         {data.map((item: any) => (
           <div key={item.id}>
