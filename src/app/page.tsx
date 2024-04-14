@@ -6,7 +6,7 @@ export default function Home() {
   const [data, setData] = useState<any>([]);
   useEffect(() => {
     axios
-      .get("http://0.0.0.0:8000/shopping/shop")
+      .get("http://raspberrypi.local:8000/shopping/shop")
       .then((res) => {
         setData(res.data);
       })
@@ -21,8 +21,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center">
         {data.map((item: any) => (
           <div key={item.id}>
-            <p>{item.name}</p>
-            <p>{item.price}</p>
+            <p>{`${item.name} - ${item.shop_branch}`}</p>
           </div>
         ))}
       </div>
