@@ -8,6 +8,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const postText = () => {
+    setIsLoading(true);
     axios
       .post("http://raspberrypi.local:8000/todo/memo/", {
         content: text,
@@ -17,6 +18,9 @@ export default function Home() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -25,7 +29,6 @@ export default function Home() {
     axios
       .get("http://raspberrypi.local:8000/todo/memo")
       .then((res) => {
-        console.log(res.data[0].content);
         setText(res.data[0].content);
       })
       .catch((err) => {
