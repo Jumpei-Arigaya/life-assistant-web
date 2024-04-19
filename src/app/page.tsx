@@ -5,7 +5,39 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [data, setData] = useState<any>([]);
   const [text, setText] = useState<any>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const postText = () => {
+    axios
+      .post("http://raspberrypi.local:8000/todo/memo/", {
+        content: text,
+      })
+      .then((res) => {
+        setText(res.data[0].content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getText = () => {
+    setIsLoading(true);
+    axios
+      .get("http://raspberrypi.local:8000/todo/memo")
+      .then((res) => {
+        console.log(res.data[0].content);
+        setText(res.data[0].content);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   useEffect(() => {
+    getText();
     axios
       .get("http://raspberrypi.local:8000/shopping/shop")
       .then((res) => {
@@ -24,11 +56,18 @@ export default function Home() {
       <input
         type="text"
         value={text}
+        disabled={isLoading}
         onChange={(e) => setText(e.target.value)}
         placeholder="メモ"
         style={{ width: "300px", height: "300px" }}
       />
-      <div className="flex flex-col items-center justify-center">
+      <button
+        onClick={postText}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 rounded"
+      >
+        メモ更新
+      </button>
+      <div className="flex flex-col items-center justify-center mt-10">
         <h3>店舗一覧</h3>
         {data.map((item: any) => (
           <div key={item.id}>
