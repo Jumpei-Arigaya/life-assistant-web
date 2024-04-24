@@ -1,4 +1,4 @@
-("");
+"use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -28,7 +28,7 @@ export default function Home() {
     setIsLoading(true);
     axios
       .get("http://raspberrypi.local:8000/todo/memo")
-      .then((res) => res.data[0].content)
+      .then((res) => setMemo(res.data[0].content))
       .catch((err) => {
         console.log(err);
       })
@@ -85,7 +85,7 @@ export default function Home() {
 
       <div className="flex flex-col items-center justify-center mt-10">
         <h3>店舗一覧</h3>
-        {data.map((item) => (
+        {data.map((item: any) => (
           <div key={item.id}>
             <p>{`${item.name} - ${item.shop_branch}`}</p>
           </div>
