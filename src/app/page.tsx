@@ -54,8 +54,18 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-4xl font-bold">Life Assistant</h1>
-      <a href="http://raspberrypi.local:8000/admin">管理画面</a>
+      <h2 className="text-3xl">menu</h2>
+      <ul>
+        <li>
+          <a href="/todos">Todos</a>
+        </li>
+        <li>
+          <a href="http://raspberrypi.local:8000/admin">管理画面</a>
+        </li>
+      </ul>
       <br />
+
+      <h2 className="text-3xl">memo</h2>
       <input
         type="text"
         value={text}
