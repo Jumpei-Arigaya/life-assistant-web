@@ -68,8 +68,7 @@ export default function Home() {
       <br />
 
       <h2 className="text-3xl">Memo</h2>
-      <input
-        type="text"
+      <textarea
         value={memo}
         disabled={isLoading}
         onChange={(e) => setMemo(e.target.value)}
