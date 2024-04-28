@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Todos</h1>
+      <h1>ToDoリスト</h1>
       <ul className="my-5">
         {todos.map((todo: any) => (
           <li key={todo.id}>{todo.title}</li>

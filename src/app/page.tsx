@@ -59,7 +59,10 @@ export default function Home() {
       <h2 className="text-3xl">Menu</h2>
       <ul>
         <li>
-          <a href="/todos">Todos</a>
+          <a href="/todos">ToDoリスト</a>
+        </li>
+        <li>
+          <a href="/recipes">レシピ</a>
         </li>
         <li>
           <a href="http://raspberrypi.local:8000/admin">管理画面</a>
@@ -73,7 +76,6 @@ export default function Home() {
         disabled={isLoading}
         onChange={(e) => setMemo(e.target.value)}
         placeholder="メモ"
-        style={{ width: "300px", height: "300px" }}
       />
       <button
         onClick={postMemo}
